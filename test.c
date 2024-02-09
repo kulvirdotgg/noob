@@ -2,10 +2,10 @@
 
 int i = 0, j = 1, k = 2;
 
-void func(int*p, int* q) {
+void func(int* p, int* q) {
     p = q;
 
-    *p = 2;
+    *p = k;
 }
 
 
@@ -14,6 +14,5 @@ int main() {
 
     printf("i = %d, j = %d, \n", i, j);
 
-    getchar();
     return 0;
 }
