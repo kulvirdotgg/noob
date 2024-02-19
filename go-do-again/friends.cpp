@@ -24,7 +24,7 @@ public:
         std::vector<int> dp(n + 1, -1);
         memFunc(dp, n);
 
-        printVec(dp);
+        // printVec(dp);
 
         return dp[n];
     }
@@ -37,9 +37,23 @@ public:
             dp[frns] = dp[frns-1] + (frns - 1) * dp[frns - 2];
         }
 
-        printVec(dp);
+        // printVec(dp);
 
         return dp[n];
+    }
+
+    int optimizedSol(int n) {
+        int single = 1;
+        int couple = 2;
+
+        for(int frns = 3; frns <= n; frns++) {
+            int prevSingle = single;
+            single = couple;
+
+            couple = couple + (frns - 1) * prevSingle;
+
+        }
+        return couple;
     }
 };
 
@@ -50,6 +64,9 @@ int main() {
     std::cout << "some friends can form groups : " << res << '\n';
 
     res = sol.sol(5);
+    std::cout << "some friends can form groups : " << res << '\n';
+
+    res = sol.optimizedSol(5);
     std::cout << "some friends can form groups : " << res << '\n';
     return 0;
 }
