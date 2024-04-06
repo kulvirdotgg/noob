@@ -1,40 +1,62 @@
-#include <cmath>
-#include <iostream>
+#include <cstdio>
 #include <vector>
 
-std::vector<bool> seive(int n) {
-    std::vector<bool> primes(n + 1, true);
-    for(int i = 0; i <= n/i; i++) {
-        if(primes[i]) {
-            for(int j = i*i; j <= n; j += i) {
+const long long SEIVE_SIZE= 1000000;
+
+std::vector<bool> primes(SEIVE_SIZE, true);
+
+void createSeive() {
+    for(int num = 2; num * num <= SEIVE_SIZE; num++) {
+        if(primes[num]) {
+            for(int j = num*num; j <= SEIVE_SIZE; j += num) {
                 primes[j] = false;
             }
+        }
+    }
+}
+
+std::vector<int> getPrimesFromSeive(int num) {
+    std::vector<int> primeList;
+
+    for(int i = 2; i <= num; i++) {
+        if(primes[i]) {
+            primeList.push_back(i);
+        }
+    }
+    return primeList;
+}
+
+std::vector<int> segmentedSeive(long long low, long long high) {
+    createSeive();
+    std::vector<int> smallPrimes = getPrimesFromSeive(sqrt(high));
+
+    std::vector<bool> largePrimes(high - low + 1, true); 
+
+    for(int prime: smallPrimes) {
+        int firstMultiple = (low + prime) / prime * prime;
+
+        for(int num = std::max(prime * prime, firstMultiple); num <= high; num += prime) {
+            // printf("the num getting marked is : %d \n", num);
+            largePrimes[num - low] = false;
+        }
+    }
+
+    std::vector<int> primes;
+    for(int num = 0; num <= high - low; num++) {
+        if(largePrimes[num]) {
+            primes.push_back(low + num);
         }
     }
     return primes;
 }
 
-std::vector<bool> segmentedSeive(long long low, long long high) {
-    std::vector<bool> primes = seive(sqrtl(high));
-    std::vector<bool> primesRange(high - low + 1, true);
-
-    for(long long i = 2; i <= high/i; i++) {
-        if(primes[i]) {
-            for(long long j = std::max(i*i, (low + i - 1)/i*i); j <= high; j += i) {
-                primesRange[j - low] = false;
-            }
-        }
-    }
-    if(low == 1) primesRange[0] = false;
-    return primesRange;
-}
-
 int main() {
-    int low = 1e5, high = 1e7;
-    std::vector<bool> primes = seive(100);
-    for(int i = 0; i < primes.size(); i++) {
-        if(primes[i]) {
-            std::cout << i << " ";
-        }
+    int low = 110;
+    int high = 130;
+
+    std::vector<int> primes = segmentedSeive(low, high);
+    for(int prime: primes) {
+        printf("%d \t", prime);
     }
+    printf("\n");
 }
