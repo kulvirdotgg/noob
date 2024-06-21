@@ -4,7 +4,7 @@
 int modularExp(std::string num, int k) {
     int mod = 0;
 
-    for(char strDigit: num) {
+    for (char strDigit : num) {
         int digit = strDigit - '0';
         mod = (mod * 10 + digit) % k;
     }

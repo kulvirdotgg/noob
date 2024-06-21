@@ -5,19 +5,21 @@
 
 class Solution {
 public:
-    int solve (std::vector<int> minutes, int n){
+    int solve(std::vector<int> minutes, int n) {
         std::deque<int> dq;
 
         int sum = 0;
-        for(int idx = 0; idx < n; idx++) {
-            if(!dq.empty() && dq.front() <= idx - 3) dq.pop_front(); 
+        for (int idx = 0; idx < n; idx++) {
+            if (!dq.empty() && dq.front() <= idx - 3)
+                dq.pop_front();
 
-            while(!dq.empty() && minutes[dq.back()] > minutes[idx]) {
+            while (!dq.empty() && minutes[dq.back()] > minutes[idx]) {
                 dq.pop_back();
             }
 
             dq.push_back(idx);
-            if(idx >= 2) sum += minutes[dq.back()];
+            if (idx >= 2)
+                sum += minutes[dq.back()];
         }
 
         return sum;
@@ -26,11 +28,13 @@ public:
 
 int main() {
     Solution sol;
-    int n; std::cin >> n;
+    int n;
+    std::cin >> n;
 
     std::vector<int> minutes(n);
 
-    for(int idx = 0; idx < n; idx++) std::cin >> minutes[idx];
+    for (int idx = 0; idx < n; idx++)
+        std::cin >> minutes[idx];
 
     std::cout << sol.solve(minutes, n) << '\n';
 }

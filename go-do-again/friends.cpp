@@ -4,18 +4,23 @@
 class Solution {
 public:
     void printVec(std::vector<int> nums) {
-        for(int num: nums) std::cout << num << " ";
+        for (int num : nums)
+            std::cout << num << " ";
         std::cout << '\n';
     }
 
-    int memFunc(std::vector<int>& dp, int n) {
-        if(n < 0) return 0;
-        if(n == 1) return 1;
-        if(n == 2) return 2;
+    int memFunc(std::vector<int> &dp, int n) {
+        if (n < 0)
+            return 0;
+        if (n == 1)
+            return 1;
+        if (n == 2)
+            return 2;
 
-        if(dp[n] != -1) return dp[n];
+        if (dp[n] != -1)
+            return dp[n];
 
-        int res = memFunc(dp, n - 1) + (n - 1) * memFunc(dp, n-2);
+        int res = memFunc(dp, n - 1) + (n - 1) * memFunc(dp, n - 2);
 
         return dp[n] = res;
     }
@@ -31,10 +36,11 @@ public:
 
     int sol(int n) {
         std::vector<int> dp(n + 1, 0);
-        dp[1] = 1; dp[2] = 2;
+        dp[1] = 1;
+        dp[2] = 2;
 
-        for(int frns = 3; frns <= n; frns++) {
-            dp[frns] = dp[frns-1] + (frns - 1) * dp[frns - 2];
+        for (int frns = 3; frns <= n; frns++) {
+            dp[frns] = dp[frns - 1] + (frns - 1) * dp[frns - 2];
         }
 
         // printVec(dp);
@@ -46,12 +52,11 @@ public:
         int single = 1;
         int couple = 2;
 
-        for(int frns = 3; frns <= n; frns++) {
+        for (int frns = 3; frns <= n; frns++) {
             int prevSingle = single;
             single = couple;
 
             couple = couple + (frns - 1) * prevSingle;
-
         }
         return couple;
     }

@@ -7,10 +7,10 @@ public:
     void solve(std::vector<int> nums, int n) {
         std::map<int, int> freq;
 
-        for(int num: nums){
+        for (int num : nums) {
             freq[num]++;
 
-            if(freq.size() >= 3){
+            if (freq.size() >= 3) {
                 std::cout << "NO" << std::endl;
                 return;
             }
@@ -19,7 +19,7 @@ public:
         int count1 = freq.begin()->second;
         int count2 = freq.rbegin()->second;
 
-        if(abs(count1 - count2) <= 1){
+        if (abs(count1 - count2) <= 1) {
             std::cout << "YES" << std::endl;
         } else {
             std::cout << "NO" << std::endl;
@@ -28,13 +28,16 @@ public:
 };
 
 int main() {
-    int t; std::cin >> t;
+    int t;
+    std::cin >> t;
 
-    while(t--) {
-        int n; std::cin >> n;
+    while (t--) {
+        int n;
+        std::cin >> n;
         std::vector<int> nums(n);
 
-        for(int i = 0; i < n; i++) std::cin >> nums[i];
+        for (int i = 0; i < n; i++)
+            std::cin >> nums[i];
 
         Solution solution;
         solution.solve(nums, n);
