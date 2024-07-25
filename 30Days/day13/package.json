@@ -1,0 +1,19 @@
+{
+    "name": "day13",
+    "module": "index.ts",
+    "type": "module",
+    "scripts" : {
+        "build" : "esbuild index.ts --bundle --outfile=build.js"
+    },
+    "devDependencies": {
+        "@types/bun": "latest",
+        "@types/lodash": "^4.17.7",
+        "esbuild": "^0.23.0"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "lodash": "^4.17.21"
+    }
+}
