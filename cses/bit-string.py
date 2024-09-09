@@ -1,15 +1,33 @@
-def solve():
+def abs():
     n = int(input())
     MOD = 1e9 + 7
 
-    base = 2
-    pow = 1
+    base = 3
+    final = 1
     while n:
         if n & 1:
-            pow = (pow * base) % MOD
-        pow = (pow * pow) % MOD
+            final = (final * base) % MOD
+            print(f" after number current {final} the exp remaining {n}")
+        final = (final * final) % MOD
         n >>= 1
-    print(int(pow))
+        print(f"end number current {final} the exp remaining {n}")
+    print(int(final))
+
+
+def solve():
+    MOD = 1e9 + 7
+    a, b = map(int, input().split())
+
+    res = 1
+    while b:
+        if b & 1:
+            res = (res * a) % MOD
+        print(f"odd number thing number current {res} the exp remaining {b}")
+        a = (a * a) % MOD
+        b >>= 1
+        print(f"full op number current {res} the exp remaining {b}")
+
+    print(res)
 
 
 def main():
