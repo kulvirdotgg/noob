@@ -1,19 +1,3 @@
-def abs():
-    n = int(input())
-    MOD = 1e9 + 7
-
-    base = 3
-    final = 1
-    while n:
-        if n & 1:
-            final = (final * base) % MOD
-            print(f" after number current {final} the exp remaining {n}")
-        final = (final * final) % MOD
-        n >>= 1
-        print(f"end number current {final} the exp remaining {n}")
-    print(int(final))
-
-
 def solve():
     MOD = 1e9 + 7
     a, b = map(int, input().split())
