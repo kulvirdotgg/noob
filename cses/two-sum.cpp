@@ -1,5 +1,5 @@
 #include <iostream>
-#include <unordered_map>
+#include <map>
 
 #define ll long long
 
@@ -9,7 +9,7 @@ void solve() {
     ll n, x;
     cin >> n >> x;
 
-    unordered_map<ll, int> mp;
+    map<ll, int> mp;
     for (int i = 0; i < n; ++i) {
         ll num;
         cin >> num;
