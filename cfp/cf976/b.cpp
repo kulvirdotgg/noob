@@ -8,11 +8,11 @@ void solve() {
     ll k;
     cin >> k;
 
-    ll l = 0, r = 1e18;
+    ll l = 0, r = 2e18;
     while (l < r) {
         ll mid = l + (r - l) / 2;
 
-        ll midSqrt = sqrt(mid);
+        ll midSqrt = sqrtl(mid);
         if (mid - midSqrt >= k) {
             r = mid;
         } else {
