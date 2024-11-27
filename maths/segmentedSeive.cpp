@@ -6,7 +6,7 @@ const long long SEIVE_SIZE = 1000000;
 std::vector<bool> primes(SEIVE_SIZE, true);
 
 void createSeive() {
-    for (int num = 2; num * num <= SEIVE_SIZE; num++) {
+    for (int num = 2; num <= SEIVE_SIZE / num; num++) {
         if (primes[num]) {
             for (int j = num * num; j <= SEIVE_SIZE; j += num) {
                 primes[j] = false;
